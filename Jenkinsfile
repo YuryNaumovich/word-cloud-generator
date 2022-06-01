@@ -27,7 +27,7 @@ pipeline {
     stages {
 
         stage('Build') {
-            agent { dockerfile { filename '/vagrant/Dockerfile'} }
+            agent { dockerfile { filename 'Dockerfile'} }
             steps {
                 git url: 'https://github.com/Fenikks/word-cloud-generator'
                 sh '''go version
@@ -63,7 +63,7 @@ pipeline {
         
         
         stage('Install on staging server') {
-            agent { dockerfile { filename '/vagrant/alpine/Dockerfile'
+            agent { dockerfile { filename 'alpine/Dockerfile'
                                  args '--network vagrant_vagrant' } }
             steps {
                 sh " ${INSTALL} "
